@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Falling logos</title>
+  <!-- Title-slide background for slides.qmd, adapted from BAA1118/lectures/logo-fall
+       (via TLWeek2026/logo-fall). Logos are read from ../img/logos so there is a single
+       copy of each image. tsParticles loads from a CDN, so the logos only fall when online. -->
+  <style>
+    html, body { margin: 0; height: 100%; background: transparent; overflow: hidden; }
+    #tsparticles { position: fixed; inset: 0; }
+  </style>
+</head>
+<body>
+  <div id="tsparticles"></div>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@1.41.5/tsparticles.min.js"></script>
+  <script>
+    const logo = (file, width, height) => ({ src: "../img/logos/" + file, width, height });
+    tsParticles.load("tsparticles", {
+      fpsLimit: 60,
+      background: { color: "transparent" },
+      particles: {
+        number: { value: 10, density: { enable: true } },
+        shape: {
+          type: "image",
+          image: [
+            logo("R.png", 200, 155),
+            logo("github.png", 294, 270),
+            logo("bluesky.png", 470, 431)
+            // , logo("cso.png", WIDTH, HEIGHT)  // add once the CSO logo is in img/logos
+          ]
+        },
+        size: { value: 70 },
+        opacity: { value: 0.32 },
+        move: {
+          enable: true,
+          direction: "bottom",
+          speed: 1.4,
+          straight: false,
+          outModes: { default: "out" }
+        }
+      },
+      detectRetina: true
+    });
+  </script>
+</body>
+</html>
